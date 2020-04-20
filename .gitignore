@@ -108,6 +108,7 @@ gradle-app.setting
 /html/build/
 /ios/build/
 /ios-moe/build/
+*gradle*
 
 ## OS Specific
 .DS_Store
@@ -125,3 +126,12 @@ Thumbs.db
 !/ios-moe/xcode/*.xcodeproj/xcshareddata
 !/ios-moe/xcode/*.xcodeproj/project.pbxproj
 /ios-moe/xcode/native/
+
+## builds
+android/*
+desktop/*
+html/*
+ios/*
+
+##images
+imagePacks/images
