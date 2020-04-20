@@ -1,0 +1,22 @@
+package com.planethopper;
+
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.library.AtlasReader;
+import com.library.MyBatch;
+import com.library.PointXY;
+
+public class SpaceBatch extends MyBatch {
+    public TextureRegion planet, spaceShip;
+
+    public SpaceBatch(AtlasReader reader){
+        super(100, null);
+
+        planet = reader.getRegion("planet");
+        spaceShip = reader.getRegion("spaceship");
+
+    }
+
+    public void draw(TextureRegion region, PointXY loc, PointXY angle, float radius){
+        draw(region, loc.x(), loc.y(), radius, radius, angle.x(), angle.y());
+    }
+}
