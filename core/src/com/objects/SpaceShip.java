@@ -12,7 +12,11 @@ public class SpaceShip extends Entity {
         batch.draw(batch.spaceShip, x, y, .8f, 1f, angle.x(), angle.y());
     }
 
-    public void update(float delta){
+    public boolean update(float delta){
+        angle.rotate(new PointXY().radians(delta));
+        set(angle.y(), angle.x()).scale(2f);
+
+        return false;
 
     }
 

@@ -8,11 +8,14 @@ import java.util.Vector;
  */
 public class World {
     public static Vector<Entity> objects;
+    public static SpaceShip pilot;
 
     public World(){
         this.objects = new Vector<>();
+        pilot = new SpaceShip(0, 2f);
+
         new Planet(0,0, 3);
-        new SpaceShip(0, 2f);
+        new Star(0, -2f);
     }
 
 }

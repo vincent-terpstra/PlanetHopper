@@ -19,8 +19,10 @@ public class Planet extends Entity {
         batch.draw(batch.planet, this, angle, radius);
     }
 
-    public void update(float delta){
+    public boolean update(float delta){
+        angle.rotate(new PointXY().radians(delta));
 
+        return false;
     }
 
 }

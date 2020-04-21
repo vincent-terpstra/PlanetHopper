@@ -9,6 +9,8 @@ import com.library.NumberDraw;
 import com.objects.Entity;
 import com.objects.World;
 
+import java.util.Vector;
+
 public class PlanetHopperGame extends ApplicationAdapter {
 
 	NumberDraw numbers;
@@ -47,7 +49,15 @@ public class PlanetHopperGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		Vector<Entity> objects = World.objects;
+
 		float delta = Gdx.graphics.getDeltaTime();
+		for(int i = 0; i < objects.size();){
+			if(objects.get(i).update(delta))
+				objects.remove(i);
+			else
+				i++;
+		}
 		for(Entity e : World.objects){
 			e.update(delta);
 		}

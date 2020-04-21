@@ -18,8 +18,9 @@ public abstract class Entity extends PointXY {
     /**
      * updates the object
      * @param delta timestep
+     * @return if the object should be removed
      */
-    public abstract void update(float delta);
+    public abstract boolean update(float delta);
 
     /**
      * draws the object using the batch

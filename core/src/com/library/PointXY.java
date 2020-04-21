@@ -43,4 +43,11 @@ public class PointXY {
         return this;
     }
 
+    public float dist(PointXY target){
+        float x = this.x - target.x;
+        float y = this.y - target.y;
+
+        return x * x + y * y;
+    }
+
 }

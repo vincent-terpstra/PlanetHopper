@@ -5,13 +5,14 @@ import com.library.MyBatch;
 import com.library.PointXY;
 
 public class SpaceBatch extends MyBatch {
-    public float[] planet, spaceShip;
+    public float[] planet, spaceShip, star;
 
     public SpaceBatch(AtlasReader reader){
         super(100, null);
 
         planet = reader.getRegion("planet");
         spaceShip = reader.getRegion("spaceship");
+        star = reader.getRegion("star");
 
     }
 
