@@ -30,8 +30,7 @@ public class MyBatch {
 
     final float[] vertices;
     int idx = 0;
-    Texture lastTexture = null;
-    float invTexWidth = 0, invTexHeight = 0;
+
 
     boolean drawing = false;
 
@@ -147,10 +146,10 @@ public class MyBatch {
         return shader;
     }
 
-    public void begin () {
+    public void begin (Texture texture) {
         if (drawing) throw new IllegalStateException("SpriteBatch.end must be called before begin.");
         renderCalls = 0;
-
+        texture.bind();
         Gdx.gl.glDepthMask(false);
         if (customShader != null)
             customShader.begin();
@@ -164,7 +163,6 @@ public class MyBatch {
     public void end () {
         if (!drawing) throw new IllegalStateException("SpriteBatch.begin must be called before end.");
         if (idx > 0) flush();
-        lastTexture = null;
         drawing = false;
 
         GL20 gl = Gdx.gl;
@@ -187,27 +185,24 @@ public class MyBatch {
         return colorPacked;
     }
 
-    public void draw (TextureRegion region, float x, float y, float width, float height){
+    public void draw (float[] region, float x, float y, float width, float height){
         draw(region, x, y, width, height, 1, 0);
     }
 
-    public void draw (TextureRegion region, float x, float y, float width, float height, float cos, float sin) {
+    public void draw (float[] region, float x, float y, float width, float height, float cos, float sin) {
         if (!drawing) throw new IllegalStateException("SpriteBatch.begin must be called before draw.");
         width /= 2;
         height /= 2;
 
         float[] vertices = this.vertices;
 
-        Texture texture = region.getTexture();
-        if (texture != lastTexture) {
-            switchTexture(texture);
-        } else if (idx == vertices.length) //
+        if (idx == vertices.length) //
             flush();
 
-        final float u = region.getU();
-        final float v = region.getV2();
-        final float u2 = region.getU2();
-        final float v2 = region.getV();
+        final float u = region[0];
+        final float v = region[3];
+        final float u2 = region[2];
+        final float v2 = region[1];
 
         final float[] vert = {
               -width, -height, u, v,
@@ -239,7 +234,6 @@ public class MyBatch {
         if (spritesInBatch > maxSpritesInBatch) maxSpritesInBatch = spritesInBatch;
         int count = spritesInBatch * 6;
 
-        lastTexture.bind();
         Mesh mesh = this.mesh;
         mesh.setVertices(vertices, 0, idx);
         mesh.getIndicesBuffer().position(0);
@@ -322,12 +316,6 @@ public class MyBatch {
 
     }
 
-    protected void switchTexture (Texture texture) {
-        flush();
-        lastTexture = texture;
-        invTexWidth = 1.0f / texture.getWidth();
-        invTexHeight = 1.0f / texture.getHeight();
-    }
 
     public void setShader (ShaderProgram shader) {
         if (drawing) {

@@ -3,6 +3,7 @@ package com.planethopper;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.library.AtlasReader;
 import com.library.NumberDraw;
 import com.objects.Entity;
@@ -14,12 +15,14 @@ public class PlanetHopperGame extends ApplicationAdapter {
 	SpaceBatch batch;
 
 	World world;
+	Texture texture;
 
 	@Override
 	public void create () {
 		world = new World();
 
 		AtlasReader reader = new AtlasReader("images");
+		texture = AtlasReader.getTexture("images");
 		numbers = new NumberDraw(reader);
 
 		batch = new SpaceBatch(reader);
@@ -50,7 +53,7 @@ public class PlanetHopperGame extends ApplicationAdapter {
 		}
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
+		batch.begin(texture);
 
 		for(Entity e: World.objects){
 			e.draw(batch);

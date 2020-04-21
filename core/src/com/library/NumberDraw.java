@@ -1,12 +1,10 @@
 package com.library;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 public class NumberDraw {
-    TextureRegion[] numbers;
+    float[][] numbers;
 
     public NumberDraw(AtlasReader reader){
-        numbers = new TextureRegion[10];
+        numbers = new float[10][];
 
         for(int i = 0; i < 10; i++){
             numbers[i] = reader.getRegion("" + i);
