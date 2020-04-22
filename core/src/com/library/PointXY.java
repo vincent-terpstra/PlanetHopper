@@ -36,6 +36,13 @@ public class PointXY {
         return radians(degs * (float)Math.PI / 180f);
     }
 
+    public PointXY move(PointXY velocity, float delta){
+        x += velocity.x * delta;
+        y += velocity.y * delta;
+
+        return this;
+    }
+
     public PointXY scale(float delta){
         x *= delta;
         y *= delta;
@@ -48,6 +55,16 @@ public class PointXY {
         float y = this.y - target.y;
 
         return x * x + y * y;
+    }
+
+    public float unit(){
+        float dist = x * x + y * y;
+        if(dist > 0){
+            dist = (float)Math.sqrt(dist);
+            scale( 1f/ dist);
+            return dist;
+        }
+        return 1;
     }
 
 }

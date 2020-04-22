@@ -5,12 +5,13 @@ import com.planethopper.SpaceBatch;
 
 public class Planet extends Entity {
     public PointXY angle;
+    float mass;
 
     final float radius;
 
     public Planet(float x, float y, float radius){
         super(x, y);
-
+        this.mass = radius * radius * radius * 4f;
         this.radius = radius;
         this.angle = new PointXY().degrees(45f);
     }

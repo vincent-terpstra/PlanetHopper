@@ -15,7 +15,7 @@ public class Star extends Entity {
     @Override
     public boolean update(float delta) {
         angle.rotate(new PointXY().radians(delta / 2));
-        return dist(World.pilot) < .6f;
+        return dist(World.pilot) < .5f;
     }
 
     @Override
