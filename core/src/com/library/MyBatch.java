@@ -299,10 +299,15 @@ public class MyBatch {
     }
 
     public void setSize(float width, float height){
+        setSize(width, height, 0, 0);
+    }
+
+    public void setSize(float width, float height, float x, float y){
         matrix = new float[]{
                 2 / width, 0,0,0,
                 0, 2/height,0,0,
-                0,0, -2.0f, 0, 0, 0, 0, 1
+                0,0, -2.0f, 0,
+                -x * 2 / width, -y * 2 / height, 0, 1
         };
     }
 

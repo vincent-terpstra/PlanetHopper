@@ -41,9 +41,6 @@ public class PlanetHopperGame extends ApplicationAdapter {
 
 	@Override
 	public void resize(int width, int height){
-		final float mapHeight = 10f;
-
-		batch.setSize(mapHeight * width / height, mapHeight);
 	}
 
 

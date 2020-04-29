@@ -20,6 +20,10 @@ public class PointXY {
         return this;
     }
 
+    public PointXY rotate(float radians){
+        return rotate((float)Math.cos(radians), -(float)Math.sin(radians));
+    }
+
     public PointXY rotate(float cos, float sin){
         return set(x * cos - y * sin, y * cos + x * sin);
     }
@@ -65,6 +69,10 @@ public class PointXY {
             return dist;
         }
         return 1;
+    }
+
+    public float angle(){
+        return (float)Math.atan2(y, x);
     }
 
 }
