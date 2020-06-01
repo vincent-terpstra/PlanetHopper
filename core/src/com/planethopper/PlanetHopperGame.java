@@ -2,13 +2,21 @@ package com.planethopper;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.BufferUtils;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.library.AtlasReader;
 import com.library.NumberDraw;
+import com.library.ScreenCaptureUtils;
 import com.objects.Entity;
 import com.objects.World;
 
+import java.util.Date;
 import java.util.Vector;
 
 public class PlanetHopperGame extends ApplicationAdapter {
@@ -67,6 +75,8 @@ public class PlanetHopperGame extends ApplicationAdapter {
 		}
 
 		batch.end();
+
+		ScreenCaptureUtils.capture(Input.Keys.A);
 	}
 
 
